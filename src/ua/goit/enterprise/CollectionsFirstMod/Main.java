@@ -9,9 +9,9 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class Main {
-    private static final int VALUE10K = 10;
-    private static final int VALUE100K = 100;
-    private static final int VALUE1000K = 1000;
+    private static final int VALUE10K = 100;
+    private static final int VALUE100K = 1000;
+    private static final int VALUE1000K = 10000;
 
     public static void main(String[] args) throws IOException {
         TimeForList timeForArray10k = new TimeForList(new ArrayList<>(), VALUE10K);
@@ -21,7 +21,7 @@ public class Main {
         TimeForSet timeForHash10k = new TimeForSet(new HashSet<>(), VALUE10K);
 
         String table10k = String.format("%-12s%-6s%-7s%-10s%-8s%-14s%-14s%n",
-                "FOR 10", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
+                "FOR 100", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
         String result10k = ("--------------------------------------------------------------------------\n" +
                 "ArrayList   " + timeForArray10k.tableResultList() + "\n" +
                 "LinedList   " + timeForLinked10k.tableResultList() + "\n" +
@@ -36,7 +36,7 @@ public class Main {
         TimeForSet timeForHash100k = new TimeForSet(new HashSet<>(), VALUE100K);
 
         String table100k = String.format("%-12s%-6s%-7s%-10s%-8s%-14s%-14s%n",
-                "FOR 100", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
+                "FOR 1000", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
         String result100k = ("--------------------------------------------------------------------------\n" +
                 "ArrayList   " + timeForArray100k.tableResultList() + "\n" +
                 "LinedList   " + timeForLinked100k.tableResultList() + "\n" +
@@ -51,7 +51,7 @@ public class Main {
         TimeForSet timeForHash1000k = new TimeForSet(new HashSet<>(), VALUE1000K);
 
         String table1000k = String.format("%-12s%-6s%-7s%-10s%-8s%-14s%-14s%n",
-                "FOR 1000", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
+                "FOR 10000", "add", "get", "contains", "remove", "iterator.add", "iterator.remove");
         String result1000k =("--------------------------------------------------------------------------\n" +
                 "ArrayList   " + timeForArray1000k.tableResultList() + "\n" +
                 "LinedList   " + timeForLinked1000k.tableResultList() + "\n" +
@@ -59,7 +59,7 @@ public class Main {
                 "HashSet     " + timeForHash1000k.tableResultSet() + "\n" +
                 "..........................................................................");
 
-        File file = new File("comparisonTable.txt");
+        File file = new File("comparisonTable2.txt");
 
         if (file.createNewFile()) {
             System.out.println("New file is created!");

@@ -4,102 +4,115 @@ import java.util.*;
 
 public class TimeForList {
     private List<Integer> list;
-    private int value;
+    private int counter;
 
-    public TimeForList(ArrayList<Integer> arrayList, int value) {
+    public TimeForList(ArrayList<Integer> arrayList, int counter) {
         this.list = arrayList;
-        this.value = value;
+        this.counter = counter;
     }
 
-    public TimeForList(LinkedList<Integer> linkedList, int value) {
+    public TimeForList(LinkedList<Integer> linkedList, int counter) {
         this.list = linkedList;
-        this.value = value;
+        this.counter = counter;
     }
 
     private final int DIMENSION = 100;
-
-    private long adding = 0;
-    private long getting = 0;
-    private long containing = 0;
-    private long removing = 0;
-    private long iteratorAdding = 0;
-    private long iteratorRemoving = 0;
+    private long sum;
 
     public long listAdd() {
+        long adding = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeAdd = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 list.add(i);
             }
             long endTimeAdd = System.nanoTime();
-            adding = endTimeAdd - startTimeAdd;
+            sum = endTimeAdd - startTimeAdd;
+            adding += sum;
         }
         return adding / DIMENSION;
     }
 
     public long listGet() {
+        long getting = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeGet = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 list.get(i);
             }
             long endTimeGet = System.nanoTime();
-            getting = endTimeGet - startTimeGet;
+            sum = endTimeGet - startTimeGet;
+            getting += sum;
         }
         return getting / DIMENSION;
     }
 
     public long listContains() {
+        long containing = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeContains = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 list.contains(i);
             }
             long endTimeContains = System.nanoTime();
-            containing = endTimeContains - startTimeContains;
+            sum = endTimeContains - startTimeContains;
+            containing += sum;
         }
         return containing / DIMENSION;
     }
 
     public long listIteratorAdd() {
+        long iteratorAdding = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeIteratorAdd = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
-                list.listIterator().add(i);
+            for (int i = 0; i < counter; i++) {
+                list.listIterator().add(2);
             }
             long endTimeIteratorAdd = System.nanoTime();
-            iteratorAdding = endTimeIteratorAdd - startTimeIteratorAdd;
+            sum = endTimeIteratorAdd - startTimeIteratorAdd;
+            iteratorAdding += sum;
         }
         return iteratorAdding / DIMENSION;
     }
 
     public long listRemove() {
+        long removing = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeRemove = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 list.remove(0);
             }
             long endTimeRemove = System.nanoTime();
-            removing = endTimeRemove - startTimeRemove;
+            sum = endTimeRemove - startTimeRemove;
+            removing += sum;
         }
         return removing / DIMENSION;
     }
 
     public long listIteratorRemove() {
+        long iteratorRemoving = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
+            Iterator<Integer> iterator = list.iterator();
+
             long startTimeIteratorRemove = System.nanoTime();
 
-            Iterator<Integer> iterator = list.iterator();
             if (iterator.next() > 10) {
                 iterator.remove();
             }
             long endTimeIteratorRemove = System.nanoTime();
-            iteratorRemoving = endTimeIteratorRemove - startTimeIteratorRemove;
+            sum = endTimeIteratorRemove - startTimeIteratorRemove;
+            iteratorRemoving += sum;
         }
         return iteratorRemoving / DIMENSION;
     }

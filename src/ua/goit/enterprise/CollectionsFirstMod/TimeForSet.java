@@ -3,62 +3,68 @@ package ua.goit.enterprise.CollectionsFirstMod;
 import java.util.*;
 
 public class TimeForSet {
-    private Set<Integer> set;
-    private int value;
+    private final Random random = new Random();
 
-    public TimeForSet(TreeSet<Integer> treeSet, int value) {
+    private Set<Integer> set;
+    private int counter;
+
+    public TimeForSet(TreeSet<Integer> treeSet, int counter) {
         this.set = treeSet;
-        this.value = value;
+        this.counter = counter;
     }
 
-    public TimeForSet(HashSet<Integer> hashSet, int value) {
+    public TimeForSet(HashSet<Integer> hashSet, int counter) {
         this.set = hashSet;
-        this.value = value;
+        this.counter = counter;
     }
 
     private final int DIMENSION = 100;
-
-    private long adding = 0;
-    private long containing = 0;
-    private long removing = 0;
-
-    Random random = new Random();
+    private long sum;
 
     public long setAdd() {
+        long adding = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeAdd = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 set.add(random.nextInt(50));
             }
             long endTimeAdd = System.nanoTime();
-            adding = endTimeAdd - startTimeAdd;
+            sum = endTimeAdd - startTimeAdd;
+            adding += sum;
         }
         return adding / DIMENSION;
     }
 
     public long setContains() {
+        long containing = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeContains = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 set.contains(random.nextInt(50));
             }
             long endTimeContains = System.nanoTime();
-            containing = endTimeContains - startTimeContains;
+            sum = endTimeContains - startTimeContains;
+            containing += sum;
         }
         return containing / DIMENSION;
     }
 
     public long setRemove() {
+        long removing = 0;
+
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeRemove = System.nanoTime();
 
-            for (int i = 0; i < value; i++) {
+            for (int i = 0; i < counter; i++) {
                 set.remove(random.nextInt(20));
             }
             long endTimeRemove = System.nanoTime();
-            removing = endTimeRemove - startTimeRemove;
+            sum = endTimeRemove - startTimeRemove;
+            removing += sum;
         }
         return removing / DIMENSION;
     }
