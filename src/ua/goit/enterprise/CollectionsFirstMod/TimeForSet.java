@@ -3,19 +3,20 @@ package ua.goit.enterprise.CollectionsFirstMod;
 import java.util.*;
 
 public class TimeForSet {
-    private final Random random = new Random();
-
     private Set<Integer> set;
     private int counter;
+    private Random random;
 
     public TimeForSet(TreeSet<Integer> treeSet, int counter) {
         this.set = treeSet;
         this.counter = counter;
+        random = new Random();
     }
 
     public TimeForSet(HashSet<Integer> hashSet, int counter) {
         this.set = hashSet;
         this.counter = counter;
+        random = new Random();
     }
 
     private final int DIMENSION = 100;
@@ -28,7 +29,7 @@ public class TimeForSet {
             long startTimeAdd = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                set.add(random.nextInt(50));
+                set.add(random.nextInt(30));
             }
             long endTimeAdd = System.nanoTime();
             sum = endTimeAdd - startTimeAdd;
@@ -44,7 +45,7 @@ public class TimeForSet {
             long startTimeContains = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                set.contains(random.nextInt(50));
+                set.contains(random.nextInt(30));
             }
             long endTimeContains = System.nanoTime();
             sum = endTimeContains - startTimeContains;
