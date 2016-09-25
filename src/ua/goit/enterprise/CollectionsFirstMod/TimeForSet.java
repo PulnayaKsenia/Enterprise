@@ -5,18 +5,15 @@ import java.util.*;
 public class TimeForSet {
     private Set<Integer> set;
     private int counter;
-    private Random random;
 
     public TimeForSet(TreeSet<Integer> treeSet, int counter) {
         this.set = treeSet;
         this.counter = counter;
-        random = new Random();
     }
 
     public TimeForSet(HashSet<Integer> hashSet, int counter) {
         this.set = hashSet;
         this.counter = counter;
-        random = new Random();
     }
 
     private final int DIMENSION = 100;
@@ -29,7 +26,7 @@ public class TimeForSet {
             long startTimeAdd = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                set.add(random.nextInt(30));
+                if (i > 0) set.add(i);
             }
             long endTimeAdd = System.nanoTime();
             sum = endTimeAdd - startTimeAdd;
@@ -45,7 +42,7 @@ public class TimeForSet {
             long startTimeContains = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                set.contains(random.nextInt(30));
+                if (i == 10) set.contains(i);
             }
             long endTimeContains = System.nanoTime();
             sum = endTimeContains - startTimeContains;
@@ -61,7 +58,7 @@ public class TimeForSet {
             long startTimeRemove = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                set.remove(random.nextInt(20));
+                if (i % 2 == 0)set.remove(i);
             }
             long endTimeRemove = System.nanoTime();
             sum = endTimeRemove - startTimeRemove;

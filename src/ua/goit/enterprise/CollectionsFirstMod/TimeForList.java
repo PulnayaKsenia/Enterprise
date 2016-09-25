@@ -26,7 +26,7 @@ public class TimeForList {
             long startTimeAdd = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                list.add(i);
+                list.add(i, 1);
             }
             long endTimeAdd = System.nanoTime();
             sum = endTimeAdd - startTimeAdd;
@@ -42,7 +42,7 @@ public class TimeForList {
             long startTimeGet = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                list.get(i);
+                list.get(5);
             }
             long endTimeGet = System.nanoTime();
             sum = endTimeGet - startTimeGet;
@@ -58,7 +58,7 @@ public class TimeForList {
             long startTimeContains = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                list.contains(i);
+                list.contains(8);
             }
             long endTimeContains = System.nanoTime();
             sum = endTimeContains - startTimeContains;
@@ -74,7 +74,7 @@ public class TimeForList {
             long startTimeIteratorAdd = System.nanoTime();
 
             for (int i = 0; i < counter; i++) {
-                list.listIterator().add(2);
+                list.listIterator().add(i);
             }
             long endTimeIteratorAdd = System.nanoTime();
             sum = endTimeIteratorAdd - startTimeIteratorAdd;
@@ -88,10 +88,8 @@ public class TimeForList {
 
         for (int j = 0; j < DIMENSION; j++) {
             long startTimeRemove = System.nanoTime();
+            list.remove(j);
 
-            for (int i = 0; i < counter; i++) {
-                list.remove(0);
-            }
             long endTimeRemove = System.nanoTime();
             sum = endTimeRemove - startTimeRemove;
             removing += sum;
